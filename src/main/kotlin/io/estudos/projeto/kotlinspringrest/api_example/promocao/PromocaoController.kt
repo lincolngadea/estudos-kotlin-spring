@@ -1,15 +1,17 @@
 package io.estudos.projeto.kotlinspringrest.api_example.promocao
 
-import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.validation.annotation.Validated
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
+import javax.validation.Valid
 
 @RestController
+@Validated
 class PromocaoController {
 
-    @GetMapping("/promocoes")
-    fun helloWord(): String {
-        return "Hello World"
+    @PostMapping("/promocoes")
+    fun criaPromocao(@RequestBody @Valid request: PromocaoRequest?): Promocao? {
+        return request?.toModel()
     }
 }
