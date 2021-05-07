@@ -12,9 +12,12 @@ fun main(){
     val listRandom = List(100){Random.nextInt(0,100)}
 
     println(listRandom)
+
     println()
     doubleList()
 
+    println()
+    mediaList()
 }
 
 /**
@@ -26,3 +29,12 @@ fun doubleList(){
     println("Lista com a raiz Quadrada:\n $calcRaizQuadrada")
 }
 
+/**
+ * Cria uma lista de 50 inteiros aleatórios e calcula a média deles. (Utilizando Reduce)
+ */
+
+fun mediaList(){
+    val listRandom = List(50){ Random.nextInt(0,100)}
+    val soma = listRandom.reduce{acc,valor -> acc + valor}
+    println("Media da Turma: ${soma/listRandom.size}")
+}
