@@ -1,7 +1,7 @@
 package io.estudos.projeto.kotlinspringrest.api_example.promocao
 
   class PromocaoRequest(
-    private val id: Long,
+    val id: Long,
     private val descricao: String,
     private val local: String,
     private val isAllInclusive: Boolean,
