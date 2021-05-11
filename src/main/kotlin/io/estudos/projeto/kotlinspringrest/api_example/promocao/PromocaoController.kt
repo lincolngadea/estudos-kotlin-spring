@@ -14,15 +14,27 @@ class PromocaoController {
     lateinit var  promocoes: ConcurrentHashMap<Long,Promocao>
 
     @PostMapping("/promocoes")
-    fun criaPromocao(@RequestBody @Valid request: PromocaoRequest): Promocao?{
+    fun cria(@RequestBody @Valid request: PromocaoRequest): ConcurrentHashMap<Long, Promocao>{
 
         promocoes[request.id] = request.toModel()
-
-        return promocoes[request.id]
+        return promocoes
     }
 
     @GetMapping("/promocoes/{id}")
-    fun listaPromocao(@PathVariable id: Long): Promocao? {
+    fun lista(@PathVariable id: Long): Promocao? {
         return promocoes[id]
+    }
+
+    @DeleteMapping("/promocoes/{id}")
+    fun deleta(@PathVariable id: Long): ConcurrentHashMap<Long, Promocao>{
+        promocoes.remove(id)
+        return promocoes
+    }
+
+    @PutMapping("/promocoes/{id}")
+    fun atualiza(@PathVariable id: Long, @RequestBody request: PromocaoRequest): ConcurrentHashMap<Long, Promocao>{
+        promocoes.remove(id)
+        promocoes[id] = request.toModel()
+        return promocoes
     }
 }
