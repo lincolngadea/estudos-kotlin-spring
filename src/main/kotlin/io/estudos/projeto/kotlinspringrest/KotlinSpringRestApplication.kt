@@ -17,7 +17,7 @@ class KotlinSpringRestApplication{
 		)
 	}
 	@Bean
-	fun promocoes() = ConcurrentHashMap<Long, Promocao>(initialPromocoes.associateBy(Promocao::id))
+	fun promocoes() = ConcurrentHashMap<Long,Promocao>(initialPromocoes.associateBy(Promocao::id))
 }
 
 fun main(args: Array<String>) {
