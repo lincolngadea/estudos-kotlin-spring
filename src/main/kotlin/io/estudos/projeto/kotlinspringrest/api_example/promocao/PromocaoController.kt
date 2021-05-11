@@ -11,7 +11,7 @@ import javax.validation.Valid
 class PromocaoController {
 
     @Autowired
-    lateinit var  promocoes: ConcurrentHashMap<Long, Promocao>
+    lateinit var  promocoes: ConcurrentHashMap<Long,Promocao>
 
     @PostMapping("/promocoes")
     fun criaPromocao(@RequestBody @Valid request: PromocaoRequest): Promocao?{
