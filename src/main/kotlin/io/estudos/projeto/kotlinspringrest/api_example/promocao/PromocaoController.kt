@@ -11,13 +11,13 @@ import javax.validation.Valid
 class PromocaoController {
 
     @Autowired
-    lateinit var  promocoes: ConcurrentHashMap<Long,Promocao>
+    lateinit var promocoes: ConcurrentHashMap<Long, Promocao>
 
     @PostMapping("/promocoes")
-    fun cria(@RequestBody @Valid request: PromocaoRequest): ConcurrentHashMap<Long, Promocao>{
+    fun cria(@RequestBody @Valid request: PromocaoRequest): Promocao? {
 
         promocoes[request.id] = request.toModel()
-        return promocoes
+        return promocoes[request.id]
     }
 
     @GetMapping("/promocoes/{id}")
@@ -26,15 +26,21 @@ class PromocaoController {
     }
 
     @DeleteMapping("/promocoes/{id}")
-    fun deleta(@PathVariable id: Long): ConcurrentHashMap<Long, Promocao>{
+    fun deleta(@PathVariable id: Long): Promocao? {
         promocoes.remove(id)
-        return promocoes
+        return promocoes[id]
     }
 
     @PutMapping("/promocoes/{id}")
-    fun atualiza(@PathVariable id: Long, @RequestBody request: PromocaoRequest): ConcurrentHashMap<Long, Promocao>{
+    fun atualiza(@PathVariable id: Long, @RequestBody request: PromocaoRequest): Promocao? {
         promocoes.remove(id)
         promocoes[id] = request.toModel()
-        return promocoes
+        return promocoes[id]
     }
+
+    @GetMapping("/promocoes")
+    fun listaTudo(@RequestParam(required = false, defaultValue = "") localFilter: String) =
+        promocoes.filter {
+            it.value.local.contains(localFilter, true)
+        }.map(Map.Entry<Long, Promocao>::value).toList()
 }
