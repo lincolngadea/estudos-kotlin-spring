@@ -17,10 +17,10 @@ class PromocaoController {
     lateinit var promocaoService: PromocaoService
 
     @PostMapping()
-    fun create(@RequestBody @Valid request: PromocaoRequest): ResponseEntity<Any>{
+    fun create(@RequestBody @Valid request: PromocaoRequest): ResponseEntity<Map<String,String>>{
         val promocao = promocaoService.create(request)
-
-        return ResponseEntity(promocaoService.getById(request.id),HttpStatus.CREATED)
+        val map = mapOf("message" to "ok")
+        return ResponseEntity(map,HttpStatus.CREATED)
     }
 
     @GetMapping("/{id}")
