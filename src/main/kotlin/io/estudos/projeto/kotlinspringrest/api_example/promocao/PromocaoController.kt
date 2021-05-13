@@ -1,10 +1,12 @@
 package io.estudos.projeto.kotlinspringrest.api_example.promocao
 
+import io.estudos.projeto.kotlinspringrest.api_example.utils.RespostaJsonCustom
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
+import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 import javax.validation.Valid
 
@@ -17,10 +19,10 @@ class PromocaoController {
     lateinit var promocaoService: PromocaoService
 
     @PostMapping()
-    fun create(@RequestBody @Valid request: PromocaoRequest): ResponseEntity<Map<String,String>>{
+    fun create(@RequestBody @Valid request: PromocaoRequest): ResponseEntity<RespostaJsonCustom>{
         val promocao = promocaoService.create(request)
-        val map = mapOf("message" to "ok")
-        return ResponseEntity(map,HttpStatus.CREATED)
+        val respostaJson = RespostaJsonCustom("ok", Date())
+        return ResponseEntity(respostaJson,HttpStatus.CREATED)
     }
 
     @GetMapping("/{id}")
