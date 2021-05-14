@@ -20,6 +20,8 @@ class PromocaoController {
 
     @PostMapping()
     fun create(@RequestBody @Valid request: PromocaoRequest): ResponseEntity<RespostaJsonCustom>{
+
+
         val promocao = promocaoService.create(request)
         val respostaJson = RespostaJsonCustom("ok", Date())
         return ResponseEntity(respostaJson,HttpStatus.CREATED)

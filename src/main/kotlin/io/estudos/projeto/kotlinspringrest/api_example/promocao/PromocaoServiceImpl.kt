@@ -15,7 +15,7 @@ class PromocaoServiceImpl: PromocaoService {
         )
     }
 
-     var promocoes = ConcurrentHashMap<Long,Promocao>(initialPromocoes.associateBy(Promocao::id))
+    var promocoes = ConcurrentHashMap<Long,Promocao>(initialPromocoes.associateBy(Promocao::id))
 
     override fun create(request: PromocaoRequest) {
         promocoes[request.id] = request.toModel()
