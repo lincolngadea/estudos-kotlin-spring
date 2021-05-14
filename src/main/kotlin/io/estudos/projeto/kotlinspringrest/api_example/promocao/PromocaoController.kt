@@ -1,5 +1,6 @@
 package io.estudos.projeto.kotlinspringrest.api_example.promocao
 
+import io.estudos.projeto.kotlinspringrest.api_example.exception.PromocaoNotFoundException
 import io.estudos.projeto.kotlinspringrest.api_example.utils.RespostaJsonCustom
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -29,10 +30,9 @@ class PromocaoController {
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: Long): ResponseEntity<Promocao?>{
-        val promocao = promocaoService.getById(id)
-        val status = if(promocao == null ) HttpStatus.NOT_FOUND else HttpStatus.OK
-
-        return ResponseEntity(promocao,status)
+        val promocao = promocaoService.getById(id) ?:
+            throw PromocaoNotFoundException("promocao ${id} nao localizada")
+        return ResponseEntity(promocao,HttpStatus.OK)
     }
 
     @DeleteMapping("/{id}")
