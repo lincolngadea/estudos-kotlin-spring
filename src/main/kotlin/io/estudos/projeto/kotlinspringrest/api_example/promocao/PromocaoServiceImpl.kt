@@ -1,43 +1,34 @@
 package io.estudos.projeto.kotlinspringrest.api_example.promocao
 
-import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Component
-import java.util.concurrent.ConcurrentHashMap
 
 @Component
-class PromocaoServiceImpl: PromocaoService {
-    companion object{
-        val initialPromocoes = arrayOf(
-            Promocao(1,"Promoção dia das mães","Rio de Janeiro",true,5),
-            Promocao(2,"Promoção Inverno","Campos",true,5),
-            Promocao(3,"Promoção Radical","Amazônia",false,14),
-            Promocao(4,"Promoção de família","Aracaju",false,14)
-        )
-    }
-
-    var promocoes = ConcurrentHashMap<Long,Promocao>(initialPromocoes.associateBy(Promocao::id))
+class PromocaoServiceImpl(val promocaoRepository: PromocaoRepository): PromocaoService {
 
     override fun create(request: PromocaoRequest) {
-        promocoes[request.id] = request.toModel()
+        val promocoes: Promocao = request.toModel()
+        promocaoRepository.save(promocoes)
     }
 
     override fun getById(id: Long): Promocao? {
-        return promocoes[id]
+        return promocaoRepository.findById(id).orElseGet(null)
     }
 
     override fun delete(id: Long) {
-        promocoes.remove(id)
+        promocaoRepository.deleteById(id)
     }
 
     override fun update(id: Long, request: PromocaoRequest): Promocao? {
         delete(id)
         create(request)
-        return promocoes[id]
+        return Promocao()
     }
 
-    override fun searchByLocal(local: String): List<Promocao> =
-        promocoes.filter {
-            it.value.local.contains(local, true)
-        }.map(Map.Entry<Long, Promocao>::value).toList()
+    override fun searchByLocal(local: String): List<Promocao> {
+        TODO("Not yet implemented")
+    }
 
+    override fun getAll(): List<Promocao> {
+        return promocaoRepository.findAll()
+    }
 }

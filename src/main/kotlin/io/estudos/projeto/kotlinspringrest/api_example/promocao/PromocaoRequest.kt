@@ -1,7 +1,6 @@
 package io.estudos.projeto.kotlinspringrest.api_example.promocao
 
-  class PromocaoRequest(
-    val id: Long,
+  data class PromocaoRequest(
     private val descricao: String,
     private val local: String,
     private val isAllInclusive: Boolean,
@@ -9,6 +8,6 @@ package io.estudos.projeto.kotlinspringrest.api_example.promocao
   ) {
 
     fun toModel(): Promocao {
-        return Promocao(id,descricao,local,isAllInclusive,qtdDiarias)
+        return Promocao(descricao,local,isAllInclusive,qtdDiarias)
     }
 }
