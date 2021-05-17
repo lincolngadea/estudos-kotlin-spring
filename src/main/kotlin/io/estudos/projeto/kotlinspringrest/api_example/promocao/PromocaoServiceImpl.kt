@@ -1,5 +1,6 @@
 package io.estudos.projeto.kotlinspringrest.api_example.promocao
 
+import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Component
 
 @Component
@@ -28,7 +29,8 @@ class PromocaoServiceImpl(val promocaoRepository: PromocaoRepository): PromocaoS
         TODO("Not yet implemented")
     }
 
-    override fun getAll(): List<Promocao> {
-        return promocaoRepository.findAll()
+    override fun getAll(start: Int, size: Int): List<Promocao> {
+        val pages = PageRequest.of(start, size)
+        return promocaoRepository.findAll(pages).toList()
     }
 }

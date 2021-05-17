@@ -6,5 +6,5 @@ interface PromocaoService {
     fun delete(id:Long)
     fun update(id:Long,request: PromocaoRequest): Promocao?
     fun searchByLocal(local:String): List<Promocao>
-    fun getAll():List<Promocao>
+    fun getAll(start:Int,size:Int):List<Promocao>
 }

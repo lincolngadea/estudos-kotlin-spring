@@ -54,8 +54,13 @@ class PromocaoController {
     }
 
     @GetMapping
-    fun getAll(): List<Promocao?>{
-        return promocaoService.getAll()
+    fun getAll(
+        @RequestParam(required = false, defaultValue = "0") start: Int,
+        @RequestParam(required = false, defaultValue = "3") size: Int
+    ): ResponseEntity<List<Promocao?>>{
+        val all = promocaoService.getAll(start, size)
+        val status = if (all.isEmpty()) HttpStatus.NOT_FOUND else HttpStatus.OK
+        return ResponseEntity(all,status)
     }
 
 }
