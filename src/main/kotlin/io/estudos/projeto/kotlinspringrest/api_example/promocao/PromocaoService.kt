@@ -5,6 +5,6 @@ interface PromocaoService {
     fun getById(id:Long): Promocao?
     fun delete(id:Long)
     fun update(id:Long,request: PromocaoRequest): Promocao?
-    fun searchByLocal(local:String): List<Promocao>
+    fun searchByLocal(): List<Promocao>
     fun getAll(start:Int,size:Int):List<Promocao>
 }

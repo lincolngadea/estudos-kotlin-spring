@@ -63,4 +63,9 @@ class PromocaoController {
         return ResponseEntity(all,status)
     }
 
+    @GetMapping("/ordenados")
+    fun getAllSorted(): List<Promocao>{
+        return promocaoService.searchByLocal()
+    }
+
 }
