@@ -68,4 +68,12 @@ class PromocaoController {
         return promocaoService.searchByLocal()
     }
 
+    @GetMapping("/filtrados")
+    fun getPorPrecoMenorQue(
+        @RequestParam(required = true) valor: Double,
+        @RequestParam(required = true) dias: Int
+    ): List<Promocao>{
+        return promocaoService.getPorPrecoMenorQue(valor,dias)
+    }
+
 }

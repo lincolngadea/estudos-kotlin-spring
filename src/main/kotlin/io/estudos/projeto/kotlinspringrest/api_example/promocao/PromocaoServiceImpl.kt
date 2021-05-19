@@ -32,5 +32,7 @@ class PromocaoServiceImpl(val promocaoRepository: PromocaoRepository): PromocaoS
         return promocaoRepository.findAll(pages).toList()
     }
 
+    override fun getPorPrecoMenorQue(preco: Double, dias: Int): List<Promocao> =
+        promocaoRepository.findByPrecoMenorQue(preco,dias)
 
 }
