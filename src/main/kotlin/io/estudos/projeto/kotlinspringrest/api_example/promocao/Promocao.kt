@@ -9,8 +9,9 @@ import javax.persistence.Id
 class Promocao(
     val descricao: String ="",
     val local: String = "",
-    val allInclusive: Boolean = false,
-    val qtdDiarias: Int = 0
+    val isAllInclusive: Boolean = false,
+    val qtdDiarias: Int = 0,
+    val preco: Double = 0.0
 ){
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null
