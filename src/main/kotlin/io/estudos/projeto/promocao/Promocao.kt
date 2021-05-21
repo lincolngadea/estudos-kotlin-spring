@@ -1,4 +1,4 @@
-package io.estudos.projeto.kotlinspringrest.api_example.promocao
+package io.estudos.projeto.promocao
 
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue

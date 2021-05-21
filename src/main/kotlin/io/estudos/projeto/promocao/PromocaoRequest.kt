@@ -1,4 +1,4 @@
-package io.estudos.projeto.kotlinspringrest.api_example.promocao
+package io.estudos.projeto.promocao
 
   data class PromocaoRequest(
     private val descricao: String,

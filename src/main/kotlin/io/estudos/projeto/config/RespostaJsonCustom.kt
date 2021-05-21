@@ -1,4 +1,4 @@
-package io.estudos.projeto.kotlinspringrest.api_example.utils
+package io.estudos.projeto.config
 
 import java.util.*
 

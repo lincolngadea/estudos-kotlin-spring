@@ -1,4 +1,4 @@
-package io.estudos.projeto.kotlinspringrest.api_example.promocao
+package io.estudos.projeto.promocao
 
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query

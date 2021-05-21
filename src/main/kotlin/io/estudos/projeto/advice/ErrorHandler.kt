@@ -1,7 +1,7 @@
-package io.estudos.projeto.kotlinspringrest.api_example.advice
+package io.estudos.projeto.advice
 
 import com.fasterxml.jackson.core.JsonParseException
-import io.estudos.projeto.kotlinspringrest.api_example.exception.PromocaoNotFoundException
+import io.estudos.projeto.exception.PromocaoNotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -26,7 +26,8 @@ class ErrorHandler {
         servletResponse: HttpServletResponse,
         exception: Exception
     ):ResponseEntity<ErrorMessage>{
-        return ResponseEntity(ErrorMessage(
+        return ResponseEntity(
+            ErrorMessage(
             "Promocao nao localizada",
             exception.message!!
         ), HttpStatus.NOT_FOUND)

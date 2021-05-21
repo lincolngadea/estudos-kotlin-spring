@@ -1,4 +1,4 @@
-package io.estudos.projeto.kotlinspringrest.api_example.exception
+package io.estudos.projeto.exception
 
 class PromocaoNotFoundException(message: String): Exception(message) {
 }

@@ -1,8 +1,7 @@
-package io.estudos.projeto.kotlinspringrest.api_example.promocao
+package io.estudos.projeto.promocao
 
-import io.estudos.projeto.kotlinspringrest.api_example.exception.PromocaoNotFoundException
-import io.estudos.projeto.kotlinspringrest.api_example.utils.RespostaJsonCustom
-import net.bytebuddy.implementation.bytecode.Throw
+import io.estudos.projeto.exception.PromocaoNotFoundException
+import io.estudos.projeto.config.RespostaJsonCustom
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
