@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/kotlindb
+    username: root
+    password: root
+    initialization-mode: always
+  jpa:
+    # colocar em false quando em produção
+    show-sql: true
+    hibernate:
+      #colocar em create quando em produção
+      ddl-auto: none
+    generate-ddl: false
