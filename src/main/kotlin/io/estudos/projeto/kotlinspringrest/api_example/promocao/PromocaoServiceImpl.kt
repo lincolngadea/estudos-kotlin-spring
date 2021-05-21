@@ -42,3 +42,11 @@ class PromocaoServiceImpl(val promocaoRepository: PromocaoRepository): PromocaoS
         promocaoRepository.findByPrecoMenorQue(preco,dias)
 
 }
+/*
+Sempre que criamos um cache é importante que ele não seja utilizado em toda a aplicação,
+pois estaríamos utilizando um recurso caro, que é a memória ram só para uso do cache e
+sempre que precisarmos destruir o cache para reconstruir novamente em um DML da vida,
+iríamos consumir mais tempo trabalhando o cache do que a própria operação requisitada.
+Dessa forma é uma boa prática criar o cache apenas em tabelas que são pouco utilizadas
+como uma tabela de cidade, cep, endereços...etc
+ */
